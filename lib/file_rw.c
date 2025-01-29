@@ -34,46 +34,47 @@ void show_matrix(int size_col, int size_row, comp** mat){
     }
 }
 
-
-void set_base_fourier(double value, int col, comp** coef_mat, int size){
-    int min = -(int)size/2;
-    for(int i=0; i<size; i++){
-        coef_mat[col][i] = cexp(I * 2 * PI * (min + i) * value / size);
+void set_base_fourier(double value, int col, comp** coef_mat, int size_degree, int size_point){
+    int min;
+	if(size_degree % 2 == 0){min = -size_degree/2;
+	}else{min = -(size_degree-1)/2;}
+    for(int i=0; i<size_degree; i++){
+        coef_mat[col][i] = cexp(I * 2 * PI * (min + i) * value / size_point);
     }
 }
 
-bool fourier_format_pointsfile(char* file_name, int size, int degree, comp** y_vector, comp** coef_mat){
+bool fourier_format_pointsfile(char* file_name, int size_point, int size_degree, comp** y_vector, comp** coef_mat){
 	FILE *fp;
     fp = fopen(file_name, "r");
-    for(int i=0; i<size; i++){
+    for(int i=0; i<size_point; i++){
         double x, y_r, y_i;
         fscanf(fp, "%lf,%lf,%lf\n", &x, &y_r, &y_i);
         
 		// make coeficient matrix
         y_vector[i][0] = y_r + y_i * I;
-        set_base_fourier(x, i, coef_mat, degree);
+        set_base_fourier(x, i, coef_mat, size_degree, size_point);
     }
 
     fclose(fp);
 	return true;
 }
 
-void set_base_fitting(double value, int col, comp** coef_mat, int size){
-    for(int i=0; i<size+1; i++){
+void set_base_fitting(double value, int col, comp** coef_mat, int size_degree){
+    for(int i=0; i<size_degree+1; i++){
         coef_mat[col][i] = pow(value, i);
     }
 }
 
-bool fitting_format_pointsfile(char* file_name, int size, int degree, comp** y_vector, comp** coef_mat){
+bool fitting_format_pointsfile(char* file_name, int size_point, int size_degree, comp** y_vector, comp** coef_mat){
 	FILE *fp;
     fp = fopen(file_name, "r");
-    for(int i=0; i<size; i++){
+    for(int i=0; i<size_point; i++){
         double x, y_r, y_i;
         fscanf(fp, "%lf,%lf,%lf\n", &x, &y_r, &y_i);
         
 		// make coeficient matrix
         y_vector[i][0] = y_r + y_i * I;
-        set_base_fitting(x, i, coef_mat, degree);
+        set_base_fitting(x, i, coef_mat, size_degree);
     }
 
     fclose(fp);

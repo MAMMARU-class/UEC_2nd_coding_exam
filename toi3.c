@@ -1,7 +1,7 @@
 #include "lib/includes.h"
 
 #define N 100
-#define K 64
+#define K 30
 
 int main(void){
     // template
@@ -31,7 +31,7 @@ int main(void){
 	gid = popen(" gnuplot","w");
 	fprintf(gid," set datafile separator ','\n");
 	fprintf(gid," set xrange [0:100]\n");
-	fprintf(gid, " set yrange [0:2]\n");
+	fprintf(gid, " set yrange [-0.5:1.5]\n");
 	fprintf(gid," plot 'data/toi3_data.csv' pt 1 title 'original points'\n");
 	fprintf(gid," replot 'data/toi3_ans.csv' with line title 'transformed function'\n");
 	fprintf(gid," pause 30\n");
