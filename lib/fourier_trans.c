@@ -26,7 +26,7 @@ int max_point(int size, comp** vec){
 		}
 		count++;
 	}
-	
+
 	return max_id;
 }
 

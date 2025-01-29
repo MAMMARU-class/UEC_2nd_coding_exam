@@ -21,7 +21,7 @@ int main(void){
     // format
 	fitting_format_pointsfile("data/toi4_data.csv", N, deg1, y_vec, coef_mat_d1);
 	fitting_format_pointsfile("data/toi4_data.csv", N, deg2, y_vec, coef_mat_d2);
-
+	
     // 1 and 2 degree fitting
     double** coef_vec_deg1 = multi_fitting(y_vec, coef_mat_d1, N, deg1);
 	double** coef_vec_deg2 = multi_fitting(y_vec, coef_mat_d2, N, deg2);

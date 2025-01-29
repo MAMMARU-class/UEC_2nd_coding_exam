@@ -7,11 +7,12 @@
 
 #include "comp_calc.h"
 #include "double_mat_calc.h"
+#include "file_rw.h"
 #include "setting.h"
 
 // CW sensor
-#define F1 ( 24.05120 * 1e9 )
-#define F2 ( 24.08320 * 1e9 )
+#define F1 ( 24.1215 * 1e9 )
+#define F2 ( 24.1340 * 1e9 )
 
 #define SIZE_POINT 128
 #define SAMPLE_FREQ 1e3
