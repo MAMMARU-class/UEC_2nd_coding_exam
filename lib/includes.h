@@ -6,6 +6,7 @@
 #include <string.h>
 
 #include "comp_calc.h"
+#include "double_mat_calc.h"
 #include "file_rw.h"
 #include "fourier_trans.h"
 #include "setting.h"

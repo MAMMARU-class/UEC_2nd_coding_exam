@@ -18,8 +18,9 @@
 comp** get_matrix(char* file_name, int size_col, int size_row);
 // show
 void show_matrix(int size_col, int size_row, comp** mat);
+void double_show_matrix(int size_col, int size_row, double** mat);
 
 bool fourier_format_pointsfile(char* file_name, int size_point, int size_degree, comp** y_vector, comp** coef_mat);
-bool fitting_format_pointsfile(char* file_name, int size, int degree, comp** y_vector, comp** coef_mat);
+bool fitting_format_pointsfile(char* file_name, int size_point, int size_degree, double** y_vector, double** coef_mat);
 
 #endif

@@ -96,3 +96,39 @@ comp** fourier_series_expansion(comp** y_vector, comp** coef_mat, int size_point
 
     return ans_vector;
 }
+
+void show_func(double** coef_vec, int size_degree){
+    printf("%d degree fitted function : ", size_degree);
+    printf("y = ");
+    for(int i=0; i<size_degree+1; i++){
+        // decrealar "+"
+        if (coef_vec[size_degree - i][0] >= 0.0 && i!=0){printf("+");}
+        printf("%f", coef_vec[size_degree - i][0]);
+        switch(size_degree - i){
+            case 0:
+                printf("\n");
+                break;
+            case 1:
+                printf(" x ");
+                break;
+            default:
+                printf(" x^%d ", size_degree - i);
+                break;
+        }
+    }
+	printf("\n");
+}
+
+double** multi_fitting(double** y_vector, double** coef_mat, int size_point, int size_degree){
+    // calculate ans_vector = (X^t X)^{-1} X^t y
+    // matA = X^t X, matB = (X^t X)^{-1} X^t
+    double** t_coef_mat = double_calc_transp_mat(size_point, size_degree+1, coef_mat);
+    double** matA = double_calc_multipl_mat(size_degree+1, size_point, size_degree+1, t_coef_mat, coef_mat);
+    double** inv_matA = double_calc_inverse_mat(size_degree+1, matA);
+    double** matB = double_calc_multipl_mat(size_degree+1, size_degree+1, size_point, inv_matA, t_coef_mat);
+    double** ans_vector = double_calc_multipl_mat(size_degree+1, size_point, 1, matB, y_vector);
+
+    show_func(ans_vector, size_degree);
+
+    return ans_vector;
+}

@@ -34,6 +34,16 @@ void show_matrix(int size_col, int size_row, comp** mat){
     }
 }
 
+// show
+void double_show_matrix(int size_col, int size_row, double** mat){
+    for(int col=0; col < size_col; col++){
+        for(int row=0; row<size_row; row++){
+            printf("%f ", mat[col][row]);
+        }
+        printf("\n");
+    }
+}
+
 void set_base_fourier(double value, int col, comp** coef_mat, int size_degree, int size_point){
     int min;
 	if(size_degree % 2 == 0){min = -size_degree/2;
@@ -59,21 +69,21 @@ bool fourier_format_pointsfile(char* file_name, int size_point, int size_degree,
 	return true;
 }
 
-void set_base_fitting(double value, int col, comp** coef_mat, int size_degree){
+void set_base_fitting(double value, int col, double** coef_mat, int size_degree){
     for(int i=0; i<size_degree+1; i++){
         coef_mat[col][i] = pow(value, i);
     }
 }
 
-bool fitting_format_pointsfile(char* file_name, int size_point, int size_degree, comp** y_vector, comp** coef_mat){
+bool fitting_format_pointsfile(char* file_name, int size_point, int size_degree, double** y_vector, double** coef_mat){
 	FILE *fp;
     fp = fopen(file_name, "r");
     for(int i=0; i<size_point; i++){
-        double x, y_r, y_i;
-        fscanf(fp, "%lf,%lf,%lf\n", &x, &y_r, &y_i);
+        double x, y;
+        fscanf(fp, "%lf,%lf\n", &x, &y);
         
 		// make coeficient matrix
-        y_vector[i][0] = y_r + y_i * I;
+        y_vector[i][0] = y;
         set_base_fitting(x, i, coef_mat, size_degree);
     }
 
