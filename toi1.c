@@ -35,9 +35,7 @@ int main(void){
     // change diagonals to 1
 	for(int i=0; i<N; i++){
 		c=1/mat_a[i][i];
-        for(int j=0; j<N; j++){
-            vec_b[i][0] *= c;
-        }
+        vec_b[i][0] *= c;
 	}
 
 	printf("answer : \n");
@@ -45,4 +43,3 @@ int main(void){
 	printf("y = %lf\n", creal(vec_b[1][0]));
 	printf("z = %lf\n", creal(vec_b[2][0]));
 }
-
