@@ -9,4 +9,5 @@
 #include "double_mat_calc.h"
 #include "file_rw.h"
 #include "fourier_trans.h"
+#include "gauss_rand.h"
 #include "setting.h"
