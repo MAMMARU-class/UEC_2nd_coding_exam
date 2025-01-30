@@ -4,7 +4,7 @@
 #define MAX 1e4
 #define N (TRIALS*MAX)
 
-#define MEAN 0
+#define MEAN 2
 #define VARI 1
 #define X_MIN (int)( MEAN - 3*sqrt(VARI) )
 #define X_MAX (int)( MEAN + 3*sqrt(VARI) )
