@@ -2,9 +2,9 @@
 #define N 3
 
 int main(void){
-	comp** mat_a = get_matrix("data/toi1_mat.csv", N, N);
-	comp** inv_a = calc_inverse_mat(N, mat_a);
+	comp** mat = get_matrix("data/toi1_mat.csv", N, N);
+	comp** inv = calc_inverse_mat(N, mat);
 
 	printf("inverted matrix : \n");
-	show_matrix(N, N, inv_a);
+	show_matrix(N, N, inv);
 }
