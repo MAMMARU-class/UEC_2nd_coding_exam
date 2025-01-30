@@ -32,6 +32,8 @@ int main(void){
 	fprintf(gid," set datafile separator ','\n");
 	fprintf(gid," set xrange [0:5]\n");
 	fprintf(gid, " set yrange [0:20]\n");
+	fprintf(gid, "set xlabel 'x'\n");
+	fprintf(gid, "set ylabel 'y'\n");
 	fprintf(gid," plot 'data/toi4_data.csv' pt 1 title 'original points'\n");
 	plot_func(gid, coef_vec_deg1, deg1);
 	plot_func(gid, coef_vec_deg2, deg2);

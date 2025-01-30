@@ -20,7 +20,7 @@ int main(void){
 	
     // write points data to csv
     FILE* fp;
-	fp = fopen("data/toi3_ans.csv", "w");
+	fp = fopen("out/toi3_ans.csv", "w");
 	for(int i=0; i<N; i++){
 		fprintf(fp, "%d,%lf\n", i, creal(ans_points[i][0]));
 	}
@@ -28,12 +28,14 @@ int main(void){
 
     // plot
 	FILE* gid = NULL;
-	gid = popen(" gnuplot","w");
-	fprintf(gid," set datafile separator ','\n");
-	fprintf(gid," set xrange [0:100]\n");
-	fprintf(gid, " set yrange [-0.5:1.5]\n");
+	gid = popen("gnuplot","w");
+	fprintf(gid, "set datafile separator ','\n");
+	fprintf(gid, "set xrange [0:100]\n");
+	fprintf(gid, "set yrange [-0.5:1.5]\n");
+	fprintf(gid, "set xlabel 'time'\n");
+	fprintf(gid, "set ylabel 'value'\n");
 	fprintf(gid," plot 'data/toi3_data.csv' pt 1 title 'original points'\n");
-	fprintf(gid," replot 'data/toi3_ans.csv' with line title 'transformed function'\n");
+	fprintf(gid," replot 'out/toi3_ans.csv' with line title '%d degree transformed function'\n", K);
 	fprintf(gid," pause 30\n");
 	pclose(gid);
 

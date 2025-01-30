@@ -13,7 +13,7 @@ void block_average(char* raw_file, char* out_file, int n, int max);
 void plot(char** file_names, int n);
 
 int main(void){
-	char* raw_data = "data/toi6_raw_data.csv";
+	char* raw_data = "out/toi6_raw_data.csv";
 
     // printf("prepare raw data \n");
     FILE* fp;
@@ -27,14 +27,14 @@ int main(void){
 	char* file_names_block_ave[TRIALS];
 	for(int i=0; i<TRIALS; i++){
 		file_names_block_ave[i] = (char*)malloc(256 * sizeof(char));
-		sprintf(file_names_block_ave[i], "data/toi6_%dblock_ave_data.csv", i+1);
+		sprintf(file_names_block_ave[i], "out/toi6_%dblock_ave_data.csv", i+1);
 	}
 	
 	for(int i=0; i<TRIALS; i++){
 		block_average(raw_data, file_names_block_ave[i], (i+1), MAX);
 	}
 
-    fp = fopen("data/toi6_std_dev.csv", "w");
+    fp = fopen("out/toi6_std_dev.csv", "w");
     for(int i=0; i<TRIALS; i++){
 		double std_dev = calc_std_dev(file_names_block_ave[i], MAX);
 		fprintf(fp, "%d,%lf\n", i+1, std_dev);
@@ -46,10 +46,11 @@ int main(void){
 	fprintf(gid," set datafile separator ','\n");
 	fprintf(gid," set xrange [1:%d]\n", TRIALS);
 	fprintf(gid, " set yrange [0:1.2]\n");
-	fprintf(gid," plot 'data/toi6_std_dev.csv' with line title 'standard devience'\n");
+	fprintf(gid, "set xlabel 'Number of Samples per Mean'\n");
+	fprintf(gid, "set ylabel 'standard deviance'\n");
+	fprintf(gid," plot 'out/toi6_std_dev.csv' with line title 'standard devience'\n");
 	fprintf(gid," pause 30\n");
 	pclose(gid);
-
 
 	return 0;
 }
