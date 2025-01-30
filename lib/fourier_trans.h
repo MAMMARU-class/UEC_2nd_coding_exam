@@ -15,7 +15,7 @@
 #define F2 ( 24.1340 * 1e9 )
 
 #define SIZE_POINT 128
-#define SAMPLE_FREQ 1e3
+#define SAMPLE_FREQ 10e3
 
 double calc_distance(comp** y_vector_s1, comp** coef_mat_s1, comp** y_vector_s2, comp** coef_mat_s2);
 double calc_vel(comp** y_vector_s1, comp** coef_mat_s1, comp** y_vector_s2, comp** coef_mat_s2);
